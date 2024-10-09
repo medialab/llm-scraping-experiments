@@ -8,7 +8,7 @@ import requests
 from openai import OpenAI, BadRequestError
 import tiktoken
 
-from prompts import SPLITTING_INSTRUCTIONS, SPLITTING_PROMPT, EXTRACTION_INSTRUCTIONS, EXTRACTION_PROMPT
+from prompts import EXTRACTION_INSTRUCTIONS, EXTRACTION_PROMPT
 from minimize_html import remove_cruft
 
 MAX_LENGTH = 256000
