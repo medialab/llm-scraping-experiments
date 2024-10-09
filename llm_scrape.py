@@ -126,9 +126,9 @@ def process_url(url):
 
     clean_html = remove_cruft(html_content)
 
-    if len(clean_html) + len(SPLITTING_PROMPT) > MAX_LENGTH:
-        print("WARNING: HTML string too long (%s for max %s), truncating it..." % (len(clean_html), MAX_LENGTH - len(SPLITTING_PROMPT)))
-    clean_html = truncate_content(clean_html, MAX_LENGTH - len(SPLITTING_PROMPT))
+    if len(clean_html) + len(EXTRACTION_PROMPT) > MAX_LENGTH:
+        print("WARNING: HTML string too long (%s for max %s), truncating it..." % (len(clean_html), MAX_LENGTH - len(EXTRACTION_PROMPT)))
+    clean_html = truncate_content(clean_html, MAX_LENGTH - len(EXTRACTION_PROMPT))
 
     tokens_length = get_tokens_len(clean_html)
     if tokens_length > MAX_TOKENS:
