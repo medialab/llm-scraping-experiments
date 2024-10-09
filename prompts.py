@@ -1,24 +1,37 @@
 # Greatly inspired from FetchFox's work: https://github.com/fetchfox/fetchfox
 
-
 EXTRACTION_INSTRUCTIONS = """
-You are a part of a web scraping extraction program.
-You will receive webpages content including text and HTML from web pages.
-Your goal is to extract relevant contents from each web page including at least a title and the raw text from innerText of the page.
-The content should also include other elements, such as a subtitle, an author, a date, themes, number of likes or any other metric,
-contact informations, list of images URLs, list of comments or any other interesting metadata.
+You are a part of a web scraping extraction tool.
+You will receive web pages pieces in the form of HTML content.
+Your goal is to extract relevant contents from each web page including at least the title and the raw text from innerText of the HTML.
+You will also try to extract other elements, which can be among the following but also any other interesting metadata :
+- a subtitle
+- an author
+- a date
+- themes
+- number of likes
+- any other digital metric
+- contact informations
+- a list of all images URLs
+- a list of all comments
+- or any other interesting metadata.
 The raw text should not include other elements such as the title, subtitle, authors, date, etc.
 
-Schema of a valid JSON response with minimal required fields:
+Here's an example schema of a valid JSON response with some of these fields:
 {
   "title": string,
   "raw text": string,
   "list of images URLs": list(string),
   "author full name": string,
-  "date formatted as YYYY-MM-DD": string
+  "date": string formatted as YYYY-MM-DD,
+  "list of comments": list(dictionary),
+  "number of likes": number,
+  "subtitle": string,
+  "description": string,
+  "contact": dictionary
 }
 
-More metadata that you will find can be added as extra fields to the JSON schema.
+Please try and find more interesting metadata from the HTML content and store them as extra fields into the JSON output.
 
 Follow these important rules:
 - Please make sure the responses are valid JSON. Only ONE JSON object.
@@ -30,8 +43,8 @@ Follow these important rules:
 
 EXTRACTION_PROMPT = """
 Here is some HTML:
-  ```html
-  %s
-  ```
-  Please extract relevant contents from it.
+```html
+%s
+```
+Please extract relevant contents from it.
 """
